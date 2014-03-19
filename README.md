@@ -11,13 +11,14 @@ Windows
 -------
 1. On a clean installation of Windows 8 install the following:
   * [Python2 x86](https://www.python.org/download/releases/)
-  * [Pywin32 x86](http://sourceforge.net/projects/pywin32/)
+  * [PyWin32 x86](http://sourceforge.net/projects/pywin32/)
   * [pip](http://www.pip-installer.org/en/latest/installing.html)
-  * [Git client](http://git-scm.com/download/win)
+  * [Git](http://git-scm.com/download/win)
+  * [Microsoft Visual Studio C++ 2008 Express](http://www.visualstudio.com/en-us/downloads/)
 
-2. Follow cfy utility installation instructions (pip install for cosmo-cli and another one for openstack provider)
+2. Follow cfy utility installation instructions (pip install cosmo-cli & openstack provider)
 3. Install PyInstaller: `pip install pyinstaller`
-4. Clone this repository to your working directory: `git clone url`
+4. Clone this repository to your working directory: `git clone https://github.com/CloudifySource/cloudify-cli-pyinstaller.git`
 5. Run PyInstaller: `pyinstaller cfy.spec`
 6. <TODO> Instructions for making self extracting zip?
 
