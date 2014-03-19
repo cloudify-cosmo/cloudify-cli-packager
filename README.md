@@ -1,0 +1,2 @@
+cloudify-cli-py-installer
+=========================
