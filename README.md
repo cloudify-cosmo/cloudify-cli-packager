@@ -55,3 +55,13 @@ __Note__: Linux will need seperate build for 32bit & 64bit. Also it's possbile t
 
 Packaging Instructions
 ======================
+Windows
+-------
+
+Linux
+-----
+
+OS X
+----
+1. Install [fpm](https://github.com/jordansissel/fpm)
+2. `fpm -t osxpkg -s dir -n cfy -C dist/ --prefix /usr/local --version `python -c "import pkg_resources;print pkg_resources.get_distribution('cosmo-cli').version"` --after-install osx-after-script.sh --osxpkg-identifier-prefix com.gigaspaces cfy/`
