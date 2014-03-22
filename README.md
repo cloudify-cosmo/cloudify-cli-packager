@@ -58,7 +58,7 @@ Packaging Instructions
 Windows
 -------
 1. On x86 OS Install [Inno Setup](http://www.jrsoftware.org/isinfo.php)
-2. Use the two isi scripts to compile a setup file.
+2. Use the two iss scripts to compile a setup file.
 
 OS X
 ----
