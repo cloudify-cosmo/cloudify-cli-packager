@@ -57,6 +57,13 @@ Packaging Instructions
 ======================
 Windows
 -------
+1. On x86 OS Install [Inno Setup](http://www.jrsoftware.org/isinfo.php)
+2. Use the two isi scripts to compile a setup file.
+
+OS X
+----
+1. Install [fpm](https://github.com/jordansissel/fpm)
+2. ```fpm -t osxpkg -s dir -n cfy -C dist/ --prefix /usr/local --version `python -c "import pkg_resources;print       pkg_resources.get_distribution('cosmo-cli').version"` --after-install osx-after-script.sh --osxpkg-identifier-prefix com.gigaspaces cfy/```
 
 Linux
 -----
@@ -64,7 +71,3 @@ Linux
 2. For deb: ```fpm -s dir -t deb -n cfy --prefix /usr/local -C dist/ --version `python -c "import pkg_resources;print pkg_resources.get_distribution('cosmo-cli').version"` --after-install after-install.sh --before-remove before-remove.sh --description "Command line interface for Cloudify" --url "https://github.com/CloudifySource/cosmo-cli" --vendor "GigaSpaces" --license "Apache License 2.0" cfy/```
 3. For rpm: 
 
-OS X
-----
-1. Install [fpm](https://github.com/jordansissel/fpm)
-2. ```fpm -t osxpkg -s dir -n cfy -C dist/ --prefix /usr/local --version `python -c "import pkg_resources;print       pkg_resources.get_distribution('cosmo-cli').version"` --after-install osx-after-script.sh --osxpkg-identifier-prefix com.gigaspaces cfy/```
