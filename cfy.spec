@@ -31,6 +31,11 @@ novaclient = pkg_resources.get_distribution('python_novaclient')
 novaclient_egg = novaclient.egg_name()  + '.egg-info'
 novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_egg)
 
+#add cosmo_manager_rest_client.swagger directory to TOC
+import cosmo_manager_rest_client, os
+swagger = os.path.dirname(cosmo_manager_rest_client.__file__)
+swagger_tree = Tree(swagger + '/swagger', 'swagger')
+
 # add cloudify_openstack package to build
 provider_package = 'cloudify_openstack'
 from PyInstaller.hooks.hookutils import get_package_paths
@@ -53,6 +58,7 @@ exe = EXE(pyz,
 coll = COLLECT(exe,
                keystoneclient_tree,
                novaclient_tree,
+               swagger_tree,
                a.binaries,
                a.zipfiles,
                a.datas,

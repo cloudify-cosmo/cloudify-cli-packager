@@ -1,0 +1,10 @@
+hiddenimports = ['cosmo_manager_rest_client.swagger.models.BlueprintState',
+                 'cosmo_manager_rest_client.swagger.models.BlueprintValidationStatus',
+                 'cosmo_manager_rest_client.swagger.models.DeploymentEvents',
+                 'cosmo_manager_rest_client.swagger.models.DeploymentNode',
+                 'cosmo_manager_rest_client.swagger.models.DeploymentNodes',
+                 'cosmo_manager_rest_client.swagger.models.Deployment',
+                 'cosmo_manager_rest_client.swagger.models.DeploymentRequest',
+                 'cosmo_manager_rest_client.swagger.models.Execution',
+                 'cosmo_manager_rest_client.swagger.models.Workflow',
+                 'cosmo_manager_rest_client.swagger.models.Workflows']
