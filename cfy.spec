@@ -41,7 +41,7 @@ provider_package = 'cloudify_openstack'
 from PyInstaller.hooks.hookutils import get_package_paths
 provider_package_path = get_package_paths(provider_package)[1] + '/' + provider_package + '.py'
 
-a = Entrypoint('cosmo-cli', 'console_scripts', 'cfy', 
+a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy', 
                scripts=[provider_package_path],
                hiddenimports=[provider_package],
                hookspath=['./hooks'])

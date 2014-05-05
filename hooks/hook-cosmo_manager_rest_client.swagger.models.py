@@ -6,5 +6,7 @@ hiddenimports = ['cosmo_manager_rest_client.swagger.models.BlueprintState',
                  'cosmo_manager_rest_client.swagger.models.Deployment',
                  'cosmo_manager_rest_client.swagger.models.DeploymentRequest',
                  'cosmo_manager_rest_client.swagger.models.Execution',
+                 'cosmo_manager_rest_client.swagger.models.Status',
+                 'cosmo_manager_rest_client.swagger.models.ProviderContextPostStatus',
                  'cosmo_manager_rest_client.swagger.models.Workflow',
                  'cosmo_manager_rest_client.swagger.models.Workflows']
