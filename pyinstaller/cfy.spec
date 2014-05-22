@@ -1,5 +1,6 @@
 # -*- mode: python -*-
 import pkg_resources
+from sys import platform
 
 def Entrypoint(dist, group, name,
                scripts=None, pathex=None, hiddenimports=None, hookspath=None, excludes=None, runtime_hooks=None):
@@ -22,6 +23,11 @@ def Entrypoint(dist, group, name,
 
     return Analysis([script_path] + scripts, pathex, hiddenimports, hookspath, excludes, runtime_hooks)
 
+if platform in ('win32', 'win64', 'cygwin'):
+    binary_name = 'cfy.exe'
+else:
+    binary_name = 'cfy'
+
 #add keystoneclient & novaclient egg-info directories to TOC for metadata support (pyinstaller doesn't support egg dirs yet)
 keystoneclient = pkg_resources.get_distribution('python_keystoneclient')
 keystoneclient_egg = keystoneclient.egg_name() + '.egg-info'
@@ -41,7 +47,7 @@ provider_package = 'cloudify_openstack'
 from PyInstaller.hooks.hookutils import get_package_paths
 provider_package_path = get_package_paths(provider_package)[1] + '/' + provider_package + '.py'
 
-a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy', 
+a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy',
                scripts=[provider_package_path],
                hiddenimports=[provider_package],
                hookspath=['./hooks'])
@@ -50,7 +56,7 @@ pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
-          name='cfy',
+          name=binary_name,
           debug=False,
           strip=None,
           upx=True,
