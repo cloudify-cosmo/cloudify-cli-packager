@@ -4,7 +4,6 @@ from sys import platform
 
 def Entrypoint(dist, group, name,
                scripts=None, pathex=None, hiddenimports=None, hookspath=None, excludes=None, runtime_hooks=None):
-    import pkg_resources
     scripts = scripts or []
     pathex = pathex or []
     # get the entry point
