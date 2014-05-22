@@ -1,9 +1,15 @@
 # -*- mode: python -*-
 import pkg_resources
+import cosmo_manager_rest_client
+import os
 from sys import platform
+from PyInstaller.hooks.hookutils import get_package_paths
+
 
 def Entrypoint(dist, group, name,
-               scripts=None, pathex=None, hiddenimports=None, hookspath=None, excludes=None, runtime_hooks=None):
+               scripts=None, pathex=None, hiddenimports=None,
+               hookspath=None, excludes=None, runtime_hooks=None):
+    import pkg_resources
     scripts = scripts or []
     pathex = pathex or []
     # get the entry point
@@ -27,23 +33,22 @@ if platform in ('win32', 'win64', 'cygwin'):
 else:
     binary_name = 'cfy'
 
-#add keystoneclient & novaclient egg-info directories to TOC for metadata support (pyinstaller doesn't support egg dirs yet)
+# add keystoneclient & novaclient egg-info directories to TOC for metadata
+# support (pyinstaller doesn't support egg dirs yet)
 keystoneclient = pkg_resources.get_distribution('python_keystoneclient')
 keystoneclient_egg = keystoneclient.egg_name() + '.egg-info'
-keystoneclient_tree = Tree(keystoneclient.location + '/' +  keystoneclient_egg,  keystoneclient_egg)
+keystoneclient_tree = Tree(keystoneclient.location + '/' + keystoneclient_egg, keystoneclient_egg)
 
 novaclient = pkg_resources.get_distribution('python_novaclient')
-novaclient_egg = novaclient.egg_name()  + '.egg-info'
+novaclient_egg = novaclient.egg_name() + '.egg-info'
 novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_egg)
 
-#add cosmo_manager_rest_client.swagger directory to TOC
-import cosmo_manager_rest_client, os
+# add cosmo_manager_rest_client.swagger directory to TOC
 swagger = os.path.dirname(cosmo_manager_rest_client.__file__)
 swagger_tree = Tree(swagger + '/swagger', 'swagger')
 
 # add cloudify_openstack package to build
 provider_package = 'cloudify_openstack'
-from PyInstaller.hooks.hookutils import get_package_paths
 provider_package_path = get_package_paths(provider_package)[1] + '/' + provider_package + '.py'
 
 a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy',
@@ -59,7 +64,7 @@ exe = EXE(pyz,
           debug=False,
           strip=None,
           upx=True,
-          console=True )
+          console=True)
 coll = COLLECT(exe,
                keystoneclient_tree,
                novaclient_tree,
