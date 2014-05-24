@@ -13,6 +13,7 @@ OutputBaseFilename=CloudifyCLI-{%CFYVERSION|0.1}
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=true
+SourceDir={%CFYDISTDIR}
 
 [Tasks]
 Name: modifypath; Description: Add application directory to your environmental path; Flags:
@@ -21,8 +22,8 @@ Name: modifypath; Description: Add application directory to your environmental p
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "{%CFYDISTDIR}\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{%CFYDISTDIR}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "cfy.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Code]
 const
