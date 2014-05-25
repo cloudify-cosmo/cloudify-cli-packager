@@ -1,19 +1,21 @@
+#define AppVersion GetEnv('CFYVERSION')
+#define Home GetEnv('HOME')
+
 [Setup]
-; NOTE: The value of AppId uniquely identifies this application.
-; Do not use the same AppId value in installers for other applications.
 AppId={{C0E2542D-5940-4EFC-8ADA-82317E9C8C40}
 AppName=Cloudify CLI
-AppVersion={%CFYVERSION|0.1}
+AppVersion={#AppVersion}
+VersionInfoVersion={#AppVersion}
 AppPublisher=GigaSpaces
-AppPublisherURL={%GSURL}
-AppSupportURL={%CFYURL}
+AppPublisherURL=http://www.gigaspaces.com
+AppSupportURL=https://github.com/cloudify-cosmo/cloudify-cli
 DefaultDirName={pf}\cfy
 DisableProgramGroupPage=yes
-OutputBaseFilename=CloudifyCLI-{%CFYVERSION|0.1}
+OutputBaseFilename=CloudifyCLI-{#AppVersion}
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=true
-SourceDir={%CFYDISTDIR}
+SetupIconFile=icons/CloudifyIcon256.ico
 
 [Tasks]
 Name: modifypath; Description: Add application directory to your environmental path; Flags:
@@ -22,8 +24,8 @@ Name: modifypath; Description: Add application directory to your environmental p
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "cfy.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#Home}\dist\cfy\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion external
+Source: "{#Home}\dist\cfy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs external
 
 [Code]
 const
