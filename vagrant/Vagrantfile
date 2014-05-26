@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     #don't sync default /vagrant folder
     windows.vm.synced_folder ".", "/vagrant", disabled: true
-    windows.vm.synced_folder ".", "/home/vagrant"
+    windows.vm.synced_folder "windows/*", "/home/vagrant"
 
     #shell provision use bash, so use cmd to run batch script
     windows.vm.provision "shell" do |shell|
@@ -76,7 +76,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     linux32.vm.synced_folder ".", "/vagrant", disabled: true
 
     linux32.vm.provision "shell" do |shell|
-      shell.path = "provision.sh"
+      shell.path = "linux/provision.sh"
       shell.privileged = false
     end
 
@@ -113,7 +113,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     linux64.vm.synced_folder ".", "/vagrant", disabled: true
 
     linux64.vm.provision "shell" do |shell|
-      shell.path = "provision.sh"
+      shell.path = "linux/provision.sh"
       shell.privileged = false
     end
 
