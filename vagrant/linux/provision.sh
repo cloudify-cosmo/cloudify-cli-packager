@@ -36,7 +36,8 @@ pip install --process-dependency-links https://github.com/cloudify-cosmo/cloudif
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
 
 # run pyinstaller
-pyinstaller cloudify-cli-packager/pyinstaller/cfy.spec -y
+cd cloudify-cli-packager/pyinstaller
+pyinstaller cfy.spec -y
 
 # create deb
 fpm -s dir -t deb -n cfy --prefix /usr/local -C dist/ \
