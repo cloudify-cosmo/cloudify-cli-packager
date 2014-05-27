@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     #don't sync default /vagrant folder
     windows.vm.synced_folder ".", "/vagrant", disabled: true
-    windows.vm.synced_folder "windows/*", "/home/vagrant"
+    windows.vm.synced_folder "./windows", "/home/vagrant"
 
     #shell provision use bash, so use cmd to run batch script
     windows.vm.provision "shell" do |shell|
