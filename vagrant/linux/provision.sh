@@ -35,7 +35,6 @@ pip install pyinstaller
 
 # install cfy and it's dependencies
 #pip install --process-dependency-links https://github.com/cloudify-cosmo/cloudify-openstack-provider/archive/develop.zip
-# rm -rf cloudify-cli-packager
 git clone https://github.com/cloudify-cosmo/cloudify-dsl-parser.git
 pushd cloudify-dsl-parser
 	if [ -n "$DSL_SHA" ]; then
@@ -52,8 +51,8 @@ pushd cloudify-rest-client
 	pip install . -r requirements.txt
 popd
 
-git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
-pushd cloudify-cli-packager
+git clone https://github.com/cloudify-cosmo/cloudify-cli.git
+pushd cloudify-cli
 	if [ -n "$CLI_SHA" ]; then
 		git reset --hard $CLI_SHA
 	fi
@@ -62,6 +61,8 @@ popd
 
 
 # run pyinstaller
+# rm -rf cloudify-cli-packager
+git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
 cd cloudify-cli-packager/pyinstaller
 pyinstaller cfy.spec -y
 
