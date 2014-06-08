@@ -34,8 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       aws.security_groups = "vagrant_cfy_build"
     end
 
-    #don't sync default /vagrant folder
-    windows.vm.synced_folder ".", "/vagrant", disabled: true
+    #sync default /vagrant folder
+    windows.vm.synced_folder ".", "/vagrant", disabled: false
     windows.vm.synced_folder "./windows", "/home/vagrant"
 
     #shell provision use bash, so use cmd to run batch script
@@ -72,8 +72,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         aws.security_groups = "vagrant_cfy_build"
     end
 
-    #no need to sync folders
-    linux32.vm.synced_folder ".", "/vagrant", disabled: true
+    #need to sync folders
+    linux32.vm.synced_folder ".", "/vagrant", disabled: false
 
     linux32.vm.provision "shell" do |shell|
       shell.path = "linux/provision.sh"
@@ -109,8 +109,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         aws.security_groups = "vagrant_cfy_build"
     end
 
-    #no need to sync folders
-    linux64.vm.synced_folder ".", "/vagrant", disabled: true
+    #need to sync folders
+    linux64.vm.synced_folder ".", "/vagrant", disabled: false
 
     linux64.vm.provision "shell" do |shell|
       shell.path = "linux/provision.sh"
