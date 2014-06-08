@@ -3,6 +3,7 @@
 DSL_SHA=""
 REST_CLIENT_SHA=""
 CLI_SHA=""
+OS_PROVIDER_SHA=""
 
 # update cache and install essentials
 sudo apt-get update
@@ -59,6 +60,13 @@ pushd cloudify-cli
 	pip install . -r requirements.txt
 popd
 
+git clone https://github.com/cloudify-cosmo/cloudify-openstack-provider.git
+pushd cloudify-openstack-provider
+	if [ -n "$OS_PROVIDER_SHA" ]; then
+		git reset --hard $OS_PROVIDER_SHA
+	fi
+	pip install . -r requirements.txt
+popd
 
 # run pyinstaller
 # rm -rf cloudify-cli-packager
@@ -69,6 +77,6 @@ pyinstaller cfy.spec -y
 # create deb
 fpm -s dir -t deb -n cfy --prefix /usr/local -C dist/ \
 --version `python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify-cli').version"` \
---after-install cloudify-cli-packager/packaging/linux/after-install.sh --before-remove cloudify-cli-packager/packaging/linux/before-remove.sh \
+--after-install ../packaging/linux/after-install.sh --before-remove ../packaging/linux/before-remove.sh \
 --description "Command line interface for Cloudify" \
 --url "https://github.com/cloudify-cosmo/cloudify-cli" --vendor "GigaSpaces" --license "Apache License 2.0" cfy/
