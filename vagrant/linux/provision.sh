@@ -80,3 +80,6 @@ fpm -s dir -t deb -n cfy --prefix /usr/local -C dist/ \
 --after-install ../packaging/linux/after-install.sh --before-remove ../packaging/linux/before-remove.sh \
 --description "Command line interface for Cloudify" \
 --url "https://github.com/cloudify-cosmo/cloudify-cli" --vendor "GigaSpaces" --license "Apache License 2.0" cfy/
+
+#copy deb file to /vagrant folder
+cp ~/cloudify-cli-packager/pyinstaller/*.deb /vagrant
