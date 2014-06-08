@@ -1,5 +1,9 @@
 #!/bin/bash
 
+DSL_SHA=""
+REST_CLIENT_SHA=""
+CLI_SHA=""
+
 # update cache and install essentials
 sudo apt-get update
 sudo apt-get install -y git curl python-dev libyaml-dev make
@@ -29,11 +33,33 @@ source ve_pyinstaller/bin/activate
 # install pyinstaller inside virtualenv
 pip install pyinstaller
 
-# install cfy
-pip install --process-dependency-links https://github.com/cloudify-cosmo/cloudify-openstack-provider/archive/develop.zip
-
+# install cfy and it's dependencies
+#pip install --process-dependency-links https://github.com/cloudify-cosmo/cloudify-openstack-provider/archive/develop.zip
 # rm -rf cloudify-cli-packager
+git clone https://github.com/cloudify-cosmo/cloudify-dsl-parser.git
+pushd cloudify-dsl-parser
+	if [ -n "$DSL_SHA" ]; then
+		git reset --hard $DSL_SHA
+	fi
+	pip install . -r requirements.txt
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
+pushd cloudify-rest-client
+	if [ -n "$REST_CLIENT_SHA" ]; then	
+		git reset --hard $REST_CLIENT_SHA
+	fi
+	pip install . -r requirements.txt
+popd
+
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
+pushd cloudify-cli-packager
+	if [ -n "$CLI_SHA" ]; then
+		git reset --hard $CLI_SHA
+	fi
+	pip install . -r requirements.txt
+popd
+
 
 # run pyinstaller
 cd cloudify-cli-packager/pyinstaller
