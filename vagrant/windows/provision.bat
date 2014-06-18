@@ -36,7 +36,7 @@ pushd cloudify-openstack-provider
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
-cd cloudify-cli-packager\pyinstaller
-pyinstaller cloudify-cli-packager\pyinstaller\cfy.spec -y
-iscc ..\packaging\windows\inno\cfy_setup.iss
-
+pushd cloudify-cli-packager/pyinstaller
+	pyinstaller cfy.spec -y
+ 	iscc ../packaging/windows/inno/cfy_setup.iss
+popd
