@@ -10,25 +10,25 @@ pip install pyinstaller
 git clone https://github.com/cloudify-cosmo/cloudify-dsl-parser.git
 pushd cloudify-dsl-parser
 	if not (%DSL_SHA%)==() git reset --hard %DSL_SHA%
-	pip install . -r requirements.txt
+	pip install . -r dev-requirements.txt
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
 pushd cloudify-rest-client
 	if not (%REST_CLIENT_SHA%)==() git reset --hard %REST_CLIENT_SHA%
-	pip install . -r requirements.txt
+	pip install . -r dev-requirements.txt
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli.git
 pushd cloudify-cli
 	if not (%CLI_SHA%)==() git reset --hard %CLI_SHA%
-	pip install . -r requirements.txt
+	pip install . -r dev-requirements.txt
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-openstack-provider.git
 pushd cloudify-openstack-provider
 	if not (%OS_PROVIDER_SHA%)==() git reset --hard %OS_PROVIDER_SHA%
-	pip install . -r requirements.txt
+	pip install . -r dev-requirements.txt
 popd
 
 python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify-cli').version" > version.txt
