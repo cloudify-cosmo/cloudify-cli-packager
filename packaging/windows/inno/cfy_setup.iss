@@ -23,8 +23,8 @@ Name: modifypath; Description: Add application directory to your environmental p
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "{%CFYDISTPATH}\cfy\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion external
-Source: "{%CFYDISTPATH}\cfy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs external
+Source: "C:\Cygwin\home\vagrant\cloudify-cli-packager\pyinstaller\dist\cfy\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion external
+Source: "C:\Cygwin\home\vagrant\cloudify-cli-packager\pyinstaller\dist\cfy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs external
 
 [Code]
 const
