@@ -1,5 +1,4 @@
 #define AppVersion GetEnv('CFYVERSION')
-#define CfyDistPath GetEnv('CFYDISTPATH')
 
 [Setup]
 AppId={{C0E2542D-5940-4EFC-8ADA-82317E9C8C40}
@@ -24,8 +23,8 @@ Name: modifypath; Description: Add application directory to your environmental p
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "{#CfyDistPath}\cfy\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion external
-Source: "{#CfyDistPath}\cfy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs external
+Source: "{%CFYDISTPATH}\cfy\cfy.exe"; DestDir: "{app}"; Flags: ignoreversion external
+Source: "{%CFYDISTPATH}\cfy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs external
 
 [Code]
 const
