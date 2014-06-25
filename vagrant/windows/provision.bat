@@ -34,6 +34,7 @@ popd
 python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify-cli').version" > version.txt
 set /p CFYVERSION=<version.txt
 del version.txt
+set CFYDISTPATH=%HOME%\cloudify-cli-packager\pyinstaller\dist
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
 cd cloudify-cli-packager\pyinstaller
