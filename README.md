@@ -11,7 +11,8 @@ Current configured provider is AWS, so this means you'll need AWS plugin install
 
 Provision scripts are located under `vagrant/<OS>` folder, so its possible to run these scripts without vagrant by executing them directly.
 
-Quickest way to start:
+Quick start:
+
 1. Set environment variables `AWS_ACCESS_KEY` and `AWS_ACCESS_KEY_ID`
 1. Clone this repository
 1. `vagrant up <windows/linux32/linux64> --provider aws`
