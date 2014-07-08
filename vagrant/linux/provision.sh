@@ -41,7 +41,7 @@ pushd cloudify-dsl-parser
 	if [ -n "$DSL_SHA" ]; then
 		git reset --hard $DSL_SHA
 	fi
-	pip install . -r dev-requirements.txt
+	pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
@@ -49,7 +49,7 @@ pushd cloudify-rest-client
 	if [ -n "$REST_CLIENT_SHA" ]; then	
 		git reset --hard $REST_CLIENT_SHA
 	fi
-	pip install . -r dev-requirements.txt
+	pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli.git
@@ -57,7 +57,7 @@ pushd cloudify-cli
 	if [ -n "$CLI_SHA" ]; then
 		git reset --hard $CLI_SHA
 	fi
-	pip install . -r dev-requirements.txt
+	pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-openstack-provider.git
@@ -65,7 +65,7 @@ pushd cloudify-openstack-provider
 	if [ -n "$OS_PROVIDER_SHA" ]; then
 		git reset --hard $OS_PROVIDER_SHA
 	fi
-	pip install . -r dev-requirements.txt
+	pip install .
 popd
 
 
