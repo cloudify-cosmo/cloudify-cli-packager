@@ -19,13 +19,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       aws.secret_access_key = AWS_ACCESS_KEY
 
       #this pre-baked AMI, not pure BASE
-      aws.ami = "ami-ef3dff98"
+      aws.ami = "ami-f1b36486"
       aws.region = "eu-west-1"
       aws.instance_type = "m1.small"
 
       #TODO: user password should be auto generated and passed via user data for better security
       aws.keypair_name = "vagrant_build"
-      override.ssh.username = "vagrant"
+      override.ssh.username = "Administrator"
       override.ssh.password = WINDOWS_PASS
 
       aws.tags = {
@@ -35,12 +35,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     #sync default /vagrant folder
-    windows.vm.synced_folder ".", "/vagrant", disabled: false
-    windows.vm.synced_folder "./windows", "/home/vagrant"
+    windows.vm.synced_folder ".", "/vagrant", disabled: true
+    windows.vm.synced_folder "./windows", "/home/Administrator/provision"
 
     #shell provision use bash, so use cmd to run batch script
     windows.vm.provision "shell" do |shell|
-      shell.inline = 'cmd /c "C:\Cygwin\home\vagrant\provision.bat"'
+      shell.inline = 'cmd /c "C:\Cygwin\home\Administrator\provision\provision.bat"'
       shell.privileged = false
     end
   end

@@ -1,3 +1,4 @@
 hooks/*.pyc
 build/*
 dist/*
+vagrant/.vagrant
