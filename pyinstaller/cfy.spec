@@ -42,13 +42,13 @@ novaclient = pkg_resources.get_distribution('python_novaclient')
 novaclient_egg = novaclient.egg_name() + '.egg-info'
 novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_egg)
 
-# add cloudify_openstack package to build
-provider_package = 'cloudify_openstack'
-provider_package_path = get_package_paths(provider_package)[1] + '/' + provider_package + '.py'
+# add provider modules to build
+provider_packages = ['cloudify_openstack', 'cloudify_simple_provider']
+provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg in provider_packages]
 
 a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy',
-               scripts=[provider_package_path],
-               hiddenimports=[provider_package],
+               scripts=provider_package_paths,
+               hiddenimports=provider_packages,
                hookspath=['./hooks'])
 
 pyz = PYZ(a.pure)
