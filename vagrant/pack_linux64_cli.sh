@@ -6,20 +6,22 @@
 #vagrant plugin install unf                                         #
 #####################################################################
 
-source ../../cli_credentials.sh
+source ../../credentials.sh
 
 function  exit_on_error {
       status=$?
       echo "exit code="$status    
       if [ $status != 0 ] ; then
          	echo "Failed (exit code $status)" 
-		vagrant destroy -f windows            
+		vagrant destroy -f linux64            
 		exit 1
       fi
 
 }
 
-rm -f /cloudify/cloudify-cli_*_amd64.deb
+sudo chown tgrid -R /cloudify
+rm -f /cloudify/cloudify-linux64-cli*amd64.deb
+rm -f /cloudify/cfy_*_amd64.deb
 
 
 #destroy linux64 vm if exit

@@ -6,7 +6,7 @@
 #vagrant plugin install unf                                         #
 #####################################################################
 
-source ../../cli_credentials.sh
+source ../../credentials.sh
 
 function  exit_on_error {
       status=$?
@@ -20,7 +20,9 @@ function  exit_on_error {
 }
 
 
-rm -f /cloudify/cloudify-cli_*.exe
+sudo chown tgrid -R /cloudify
+rm -f /cloudify/cloudify-windows-cli*.exe
+rm -f /cloudify/CloudifyCLI*.exe
 
 
 ##destroy windows vm if exit
@@ -37,7 +39,7 @@ echo "ip_address="$ip_address
 ##copy windows exe file
 sudo mkdir -p /cloudify
 sudo chown tgrid -R /cloudify
-sshpass -p 'abcd1234!!' scp -p Administrator@$ip_address:/home/Administrator/cloudify-cli-packager/packaging/windows/inno/Output/CloudifyCLI-3.0.exe /cloudify
+sshpass -p 'abcd1234!!' scp -p Administrator@$ip_address:/home/Administrator/cloudify-cli-packager/packaging/windows/inno/Output/CloudifyCLI*.exe /cloudify
 
 exit_on_error
 
