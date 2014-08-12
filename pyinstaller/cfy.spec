@@ -46,7 +46,7 @@ novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_
 provider_packages = ['cloudify_openstack', 'cloudify_simple_provider']
 provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg in provider_packages]
 
-a = Entrypoint('cloudify-cli', 'console_scripts', 'cfy',
+a = Entrypoint('cloudify', 'console_scripts', 'cfy',
                scripts=provider_package_paths,
                hiddenimports=provider_packages,
                hookspath=['./hooks'])
