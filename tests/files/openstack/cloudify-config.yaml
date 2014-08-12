@@ -1,0 +1,23 @@
+############################################
+## This config file created for CLI test  ##
+## DO NOT COMMIT YOUR CREDENTIALS         ##
+############################################
+keystone:
+    username:
+    password:
+    tenant_name:
+    auth_url:
+
+compute:
+    region: region-b.geo-1
+    management_server:
+        instance:
+            name: $instance_name
+            image: 75d47d10-fef8-473b-9dd1-fe2f7649cb41
+        management_keypair:
+            name: cloudify-clipkgtest-kp
+            private_key_path: ~/.ssh/cloudify-clipkgtest-kp.pem
+    agent_servers:
+        agents_keypair:
+            name: cloudify-clipkgtest-kp
+            private_key_path: ~/.ssh/cloudify-clipkgtest-kp.pem

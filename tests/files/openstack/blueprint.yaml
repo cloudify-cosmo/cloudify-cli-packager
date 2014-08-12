@@ -1,0 +1,10 @@
+imports:
+    - http://www.getcloudify.org/spec/cloudify/3.0/types.yaml
+
+blueprint:
+    name: hello_world
+    nodes:
+        -   name: host
+            type: cloudify.types.host
+            properties:
+                install_agent: false
