@@ -59,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       aws.secret_access_key = AWS_ACCESS_KEY
 
       #official ubuntu 12.04 32bit box
-      aws.ami = "ami-2163a756"
+      aws.ami = "ami-ca5b89bd"
       aws.region = AWS_REGION
       aws.instance_type = AWS_INSTANCE_TYPE
 
@@ -94,7 +94,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         aws.secret_access_key = AWS_ACCESS_KEY
 
         #official ubuntu 12.04 32bit box
-        aws.ami = "ami-2163a756"
+        aws.ami = "ami-b25e8cc5"
         aws.region = AWS_REGION
         aws.instance_type = AWS_INSTANCE_TYPE
 
