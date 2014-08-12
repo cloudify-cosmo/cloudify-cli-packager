@@ -31,7 +31,7 @@ pushd cloudify-openstack-provider
 	pip install .
 popd
 
-python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify-cli').version" > version.txt
+python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify').version" > version.txt
 set /p CFYVERSION=<version.txt
 del version.txt
 
