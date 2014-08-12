@@ -1,10 +1,6 @@
 hooks/*.pyc
-tests/.vagrant/*
-tests/files/deb32/*
-tests/files/deb64/*
-tests/files/win/*
-vagrant/.vagrant/*
+.vagrant/*
 *.pyc
 build/*
 dist/*
-.qbcache/
+.qbcache/*
