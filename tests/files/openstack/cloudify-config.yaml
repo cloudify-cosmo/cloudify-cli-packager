@@ -15,9 +15,9 @@ compute:
             name: $instance_name
             image: 75d47d10-fef8-473b-9dd1-fe2f7649cb41
         management_keypair:
-            name: cloudify-clipkgtest-kp
-            private_key_path: ~/.ssh/cloudify-clipkgtest-kp.pem
+            name: cloudify-$instance_name-mgmt-kp
+            private_key_path: /tmp/cloudify-$instance_name-mgmt-kp.pem
     agent_servers:
         agents_keypair:
-            name: cloudify-clipkgtest-kp
-            private_key_path: ~/.ssh/cloudify-clipkgtest-kp.pem
+            name: cloudify-$instance_name-agent-kp
+            private_key_path: /tmp/cloudify-$instance_name-agent-kp.pem
