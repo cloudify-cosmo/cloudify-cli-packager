@@ -261,7 +261,6 @@ def _set_class_vars(cls):
     cls.mgmt_ip = config.get('global', 'management_ip')
     cls.opst_blueprint_path = _get_abspath(config.get('openstack',
                                                       'blueprint_path'))
-    cls.keypair = _get_abspath(config.get('global', 'private_key'))
 
     if system() == 'Windows':
         cls.path = _get_abspath(config.get('exe', 'path'))
