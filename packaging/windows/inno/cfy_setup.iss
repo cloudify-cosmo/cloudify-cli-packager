@@ -4,7 +4,6 @@
 AppId={{C0E2542D-5940-4EFC-8ADA-82317E9C8C40}
 AppName=Cloudify CLI
 AppVersion={#AppVersion}
-VersionInfoVersion={#AppVersion}
 AppPublisher=GigaSpaces
 AppPublisherURL=http://www.gigaspaces.com
 AppSupportURL=https://github.com/cloudify-cosmo/cloudify-cli
