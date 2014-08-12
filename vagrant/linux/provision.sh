@@ -77,7 +77,7 @@ pyinstaller cfy.spec -y
 
 # create deb
 fpm -s dir -t deb -n cfy --prefix /usr/local -C dist/ \
---version `python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify-cli').version"` \
+--version `python -c "import pkg_resources;print pkg_resources.get_distribution('cloudify').version"` \
 --after-install ../packaging/linux/after-install.sh --before-remove ../packaging/linux/before-remove.sh \
 --description "Command line interface for Cloudify" \
 --url "https://github.com/cloudify-cosmo/cloudify-cli" --vendor "GigaSpaces" --license "Apache License 2.0" cfy/
