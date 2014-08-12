@@ -352,9 +352,6 @@ class BootstrapOpenstack(BaseTest):
         logger.debug('temp dir: {}'.format(cls.tempdir))
         os.chdir(cls.tempdir)
 
-        if not os.path.exists(os.path.expanduser('~/.ssh')):
-            os.mkdir(os.path.expanduser('~/.ssh'))
-        copy(cls.keypair, os.path.expanduser('~/.ssh'))
         _call(['cfy', 'init', 'openstack'], appid=cls.pkg_id)
         _copy_cloudify_config(cls.opst_conf,
                               os.path.join(cls.tempdir,
@@ -365,6 +362,7 @@ class BootstrapOpenstack(BaseTest):
         else:
             errcode = _call(['cfy', 'bootstrap', '-v'], appid=cls.pkg_id)
             if errcode != 0:
+                os.chdir(cls.origdir)
                 raise Exception('Bootstrap failed, error: {}'.format(errcode))
 
     @classmethod
