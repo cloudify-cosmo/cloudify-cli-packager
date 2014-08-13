@@ -1,7 +1,7 @@
 # -*- mode: python -*-
 import pkg_resources
 import os
-from sys import platform
+from platform import system
 from PyInstaller.hooks.hookutils import get_package_paths
 
 
@@ -18,16 +18,13 @@ def Entrypoint(dist, group, name,
     # script name must not be a valid module name to avoid name clashes on import
     script_path = os.path.join(WORKPATH, name + '-script.py')
     print "creating script for entry point", dist, group, name
-    fp = open(script_path, 'w')
-    try:
-        print >>fp, "import", ep.module_name
-        print >>fp, "%s.%s()" % (ep.module_name, '.'.join(ep.attrs))
-    finally:
-        fp.close()
+    with open(script_path, 'w') as fp:
+        fp.write("import {}\n".format(ep.module_name))
+        fp.write("{}.{}()\n".format(ep.module_name, '.'.join(ep.attrs)))
 
     return Analysis([script_path] + scripts, pathex, hiddenimports, hookspath, excludes, runtime_hooks)
 
-if platform in ('win32', 'win64', 'cygwin'):
+if 'Windows' == system():
     binary_name = 'cfy.exe'
 else:
     binary_name = 'cfy'
@@ -46,6 +43,11 @@ novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_
 provider_packages = ['cloudify_openstack', 'cloudify_simple_provider']
 provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg in provider_packages]
 
+# add VERSION file
+cli_module_name = 'cosmo_cli'
+version_path = pkg_resources.resource_filename(cli_module_name, 'VERSION')
+version_file = [(os.path.join('cosmo_cli', 'VERSION'), version_path, 'DATA')]
+
 a = Entrypoint('cloudify', 'console_scripts', 'cfy',
                scripts=provider_package_paths,
                hiddenimports=provider_packages,
@@ -63,9 +65,11 @@ exe = EXE(pyz,
 coll = COLLECT(exe,
                keystoneclient_tree,
                novaclient_tree,
+               version_file,
                a.binaries,
                a.zipfiles,
                a.datas,
                strip=None,
                upx=True,
                name='cfy')
+
