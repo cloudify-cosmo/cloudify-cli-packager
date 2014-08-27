@@ -231,11 +231,10 @@ def _get_abspath(path):
 
 def _remove_files(files):
     for file in files:
-        try:
+        if os.path.isfile(file):
             os.remove(file)
-        except OSError as e:
-            raise Exception('Failed deleting {}, reason: {}'
-                            .format(file, e.strerror))
+        elif os.path.isdir(file):
+            rmtree(file)
 
 
 def _set_logging_stream_handler():
@@ -328,12 +327,12 @@ class InstallCFY(BaseTest):
     def test_cfy_init_openstack(self):
         logger.debug('cwd: {}'.format(os.getcwd()))
         self.assertReturnCodeZero('cfy init openstack')
-        _remove_files(['.cloudify', 'cloudify-config.yaml'])
+        _remove_files(['cloudify-config.yaml', '.cloudify'])
 
     def test_cfy_init_simple_provider(self):
         logger.debug('cwd: {}'.format(os.getcwd()))
         self.assertReturnCodeZero('cfy init simple_provider')
-        _remove_files(['.cloudify', 'cloudify-config.yaml'])
+        _remove_files(['cloudify-config.yaml', '.cloudify'])
 
 
 class BootstrapOpenstack(BaseTest):
