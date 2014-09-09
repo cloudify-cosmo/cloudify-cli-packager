@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       aws.keypair_name = "vagrant_build"
       override.ssh.username = "ubuntu"
-      override.ssh.private_key_path = "~/.ssh/aws/vagrant_build.pem"
+      override.ssh.private_key_path = ENV['VAGRANT_PKEY'] || "~/.ssh/aws/vagrant_build.pem"
 
       aws.tags = {
           "Name" => "vagrant cfy linux32 build",
@@ -101,7 +101,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       aws.keypair_name = "vagrant_build"
       override.ssh.username = "ubuntu"
-      override.ssh.private_key_path = "~/.ssh/aws/vagrant_build.pem"
+      override.ssh.private_key_path = ENV['VAGRANT_PKEY'] || "~/.ssh/aws/vagrant_build.pem"
 
       aws.tags = {
           "Name" => "vagrant cfy linux64 build",
