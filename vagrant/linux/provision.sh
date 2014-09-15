@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DSL_SHA=938cf6aece1504ef174f56efd1cb4c777ee3b7dd
-REST_CLIENT_SHA=19af1a6055de5955f011963813f5c804ac9fbf5e
-CLI_SHA=ed6a86fd2c1d611e4f68655c2397e8fc706d7e2b
-OS_PROVIDER_SHA=d41a625a5621174d47dfaff1920fe4f82c86b331
+DSL_SHA=""
+REST_CLIENT_SHA=""
+CLI_SHA=""
+OS_PROVIDER_SHA=""
 
 # update cache and install essentials
 sudo apt-get update
