@@ -44,7 +44,7 @@ provider_packages = ['cloudify_openstack', 'cloudify_simple_provider']
 provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg in provider_packages]
 
 # add VERSION file
-cli_module_name = 'cosmo_cli'
+cli_module_name = 'cloudify_cli'
 version_path = pkg_resources.resource_filename(cli_module_name, 'VERSION')
 version_file = [(os.path.join('cosmo_cli', 'VERSION'), version_path, 'DATA')]
 
