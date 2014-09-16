@@ -46,7 +46,7 @@ provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg 
 # add VERSION file
 cli_module_name = 'cloudify_cli'
 version_path = pkg_resources.resource_filename(cli_module_name, 'VERSION')
-version_file = [(os.path.join('cosmo_cli', 'VERSION'), version_path, 'DATA')]
+version_file = [(os.path.join('cloudify_cli', 'VERSION'), version_path, 'DATA')]
 
 a = Entrypoint('cloudify', 'console_scripts', 'cfy',
                scripts=provider_package_paths,
