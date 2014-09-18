@@ -35,7 +35,6 @@ source ve_pyinstaller/bin/activate
 pip install pyinstaller
 
 # install cfy and it's dependencies
-#pip install --process-dependency-links https://github.com/cloudify-cosmo/cloudify-openstack-provider/archive/develop.zip
 git clone https://github.com/cloudify-cosmo/cloudify-dsl-parser.git
 pushd cloudify-dsl-parser
 	if [ -n "$DSL_SHA" ]; then
