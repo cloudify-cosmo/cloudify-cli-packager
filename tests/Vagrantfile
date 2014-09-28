@@ -10,6 +10,17 @@ AWS_SECURITY_GROUP = "vagrant_cfy_build"
 AWS_REGION = "eu-west-1"
 AWS_INSTANCE_TYPE = "m1.small"
 
+$linux_prov = <<SCRIPT
+apt-get install -y python-nose
+nosetests -s -v /vagrant/scripts --with-xunit
+SCRIPT
+$windows_prov = <<SCRIPT
+pip install nose
+chmod -R 777 /vagrant/files/exe
+nosetests -s -v 'C:\\Cygwin\\vagrant\\scripts\\test_package.py' --with-xunit
+SCRIPT
+
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ###################
   # Windows machine #
@@ -40,8 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     windows.vm.provision "shell" do |shell|
-      shell.inline = 'chmod -R 777 /vagrant/files/exe && cd $TMP &&
-                      cmd /c python "C:\Cygwin\vagrant\scripts\test_package.py"'
+      shell.inline = $windows_prov
       shell.privileged = false
     end
   end
@@ -77,8 +87,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       override.vm.box = 'ubuntu/trusty32'
     end
 
-    linux32.vm.provision "shell",
-    inline: 'python /vagrant/scripts/test_package.py'
+    linux32.vm.provision "shell", inline: $linux_prov
   end
 
     ########################
@@ -112,7 +121,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         override.vm.box = "ubuntu/trusty64"
       end
 
-      linux64.vm.provision "shell",
-      inline: 'python /vagrant/scripts/test_package.py'
+      linux64.vm.provision "shell", inline: $linux_prov
     end
 end

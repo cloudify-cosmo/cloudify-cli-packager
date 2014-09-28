@@ -195,7 +195,7 @@ def _call(cmd, stdout=open(os.devnull, 'w'), appid=None):
         env['PATH'] += ';{}'.format(_get_installed_path(appid))
         return call(cmd, env=env, stdout=stdout)
     else:
-        return call(cmd, stdout=stdout)
+        return call(cmd, stdout=None)
 
 
 def _id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -326,12 +326,12 @@ class InstallCFY(BaseTest):
 
     def test_cfy_init_openstack(self):
         logger.debug('cwd: {}'.format(os.getcwd()))
-        self.assertReturnCodeZero('cfy init openstack')
+        self.assertReturnCodeZero('cfy init -p openstack')
         _remove_files(['cloudify-config.yaml', '.cloudify'])
 
     def test_cfy_init_simple_provider(self):
         logger.debug('cwd: {}'.format(os.getcwd()))
-        self.assertReturnCodeZero('cfy init simple_provider')
+        self.assertReturnCodeZero('cfy init -p simple_provider')
         _remove_files(['cloudify-config.yaml', '.cloudify'])
 
 
@@ -350,7 +350,7 @@ class BootstrapOpenstack(BaseTest):
         logger.debug('temp dir: {}'.format(cls.tempdir))
         os.chdir(cls.tempdir)
 
-        _call(['cfy', 'init', 'openstack'], appid=cls.pkg_id)
+        _call(['cfy', 'init', '-p', 'openstack'], appid=cls.pkg_id)
         _copy_cloudify_config(cls.opst_conf,
                               os.path.join(cls.tempdir,
                                            'cloudify-config.yaml'))
@@ -366,7 +366,8 @@ class BootstrapOpenstack(BaseTest):
     @classmethod
     def tearDownClass(cls):
         if not cls.use_existing:
-            errcode = _call(['cfy', 'teardown', '-f'], appid=cls.pkg_id)
+            errcode = _call(['cfy', 'teardown', '-f', '--ignore-deployments'],
+                            appid=cls.pkg_id)
             if errcode != 0:
                 raise Exception('Teardown failed, error: {}'.format(errcode))
 
@@ -381,17 +382,17 @@ class BootstrapOpenstack(BaseTest):
         dp = 'mock'
         path = self.opst_blueprint_path
         self.assertReturnCodeZero('cfy status')
-        self.assertReturnCodeZero('cfy blueprints validate {}'.format(path))
-        self.assertReturnCodeZero('cfy blueprints upload -b {} {}'.format(
+        self.assertReturnCodeZero('cfy blueprints validate -p {}'.format(path))
+        self.assertReturnCodeZero('cfy blueprints upload -b {} -p {}'.format(
                                   bp, path))
         self.assertReturnCodeZero('cfy blueprints list')
         self.assertReturnCodeZero('cfy deployments create -b {} -d {}'.format(
                                   bp, dp))
         self.assertReturnCodeZero('cfy deployments list')
-        self.assertReturnCodeZero('cfy deployments execute -d {} install'
+        self.assertReturnCodeZero('cfy executions start -d {} -w install'
                                   .format(dp))
         self.assertReturnCodeZero('cfy executions list -d {}'.format(dp))
-        self.assertReturnCodeZero('cfy deployments execute -d {} uninstall'
+        self.assertReturnCodeZero('cfy executions start -d {} -w uninstall'
                                   .format(dp))
         self.assertReturnCodeZero('cfy deployments delete -d {} -f'.format(dp))
 
