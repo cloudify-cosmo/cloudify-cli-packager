@@ -1,5 +1,6 @@
 SET DSL_SHA=""
 SET REST_CLIENT_SHA=""
+SET PLUGINS_COMMON_SHA=""
 SET CLI_SHA=""
 SET OS_PROVIDER_SHA=""
 
@@ -17,6 +18,12 @@ git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
 pushd cloudify-rest-client
 	if not (%REST_CLIENT_SHA%)==() git reset --hard %REST_CLIENT_SHA%
 	pip install .
+popd
+
+git clone git@github.com:cloudify-cosmo/cloudify-plugins-common.git
+pushd cloudify-plugins-common
+        if not (%PLUGINS_COMMON_SHA%)==() git reset --hard %PLUGINS_COMMON_SHA%
+        pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli.git
