@@ -1,6 +1,6 @@
 SET DSL_SHA=""
 SET REST_CLIENT_SHA=""
-SET PLUGINS_COMMON_SHA=""
+SET COMMON_PLUGIN_SHA=""
 SET CLI_SHA=""
 SET OS_PROVIDER_SHA=""
 
@@ -22,7 +22,7 @@ popd
 
 git clone git@github.com:cloudify-cosmo/cloudify-plugins-common.git
 pushd cloudify-plugins-common
-        if not (%PLUGINS_COMMON_SHA%)==() git reset --hard %PLUGINS_COMMON_SHA%
+        if not (%COMMON_PLUGIN_SHA%)==() git reset --hard %COMMON_PLUGIN_SHA%
         pip install .
 popd
 
