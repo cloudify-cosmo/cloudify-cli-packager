@@ -20,7 +20,7 @@ pushd cloudify-rest-client
 	pip install .
 popd
 
-git clone https://github.com:cloudify-cosmo/cloudify-plugins-common.git
+git clone https://github.com/cloudify-cosmo/cloudify-plugins-common.git
 pushd cloudify-plugins-common
         if not (%COMMON_PLUGIN_SHA%)==() git reset --hard %COMMON_PLUGIN_SHA%
         pip install .
