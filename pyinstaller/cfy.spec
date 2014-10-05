@@ -40,7 +40,7 @@ novaclient_egg = novaclient.egg_name() + '.egg-info'
 novaclient_tree = Tree(novaclient.location + '/' +  novaclient_egg,  novaclient_egg)
 
 # add provider modules to build
-provider_packages = ['cloudify_openstack', 'cloudify_simple_provider']
+provider_packages = ['cloudify_openstack']
 provider_package_paths = [get_package_paths(pkg)[1] + '/' + pkg + '.py' for pkg in provider_packages]
 
 # add VERSION file

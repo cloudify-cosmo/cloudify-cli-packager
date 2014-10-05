@@ -329,11 +329,6 @@ class InstallCFY(BaseTest):
         self.assertReturnCodeZero('cfy init -p openstack')
         _remove_files(['cloudify-config.yaml', '.cloudify'])
 
-    def test_cfy_init_simple_provider(self):
-        logger.debug('cwd: {}'.format(os.getcwd()))
-        self.assertReturnCodeZero('cfy init -p simple_provider')
-        _remove_files(['cloudify-config.yaml', '.cloudify'])
-
 
 class BootstrapOpenstack(BaseTest):
     @classmethod
