@@ -11,22 +11,22 @@ sudo apt-get update
 sudo apt-get install -y git curl python-dev libyaml-dev make
 
 # install pip
-#curl --silent --show-error --retry 5 https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python
+curl --silent --show-error --retry 5 https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python
 
 # install virtualenv
-#sudo pip install virtualenv
+sudo pip install virtualenv
 
 # install ruby
-#wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.bz2
-#tar -xjf ruby-1.9.3-p547.tar.bz2
-#cd ruby-1.9.3-p547
-#./configure --disable-install-doc
-#make
-#sudo make install
-#cd ~
+wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.bz2
+tar -xjf ruby-1.9.3-p547.tar.bz2
+cd ruby-1.9.3-p547
+./configure --disable-install-doc
+make
+sudo make install
+cd ~
 
 # install fpm
-#sudo gem install fpm --no-rdoc --no-ri
+sudo gem install fpm --no-rdoc --no-ri
 
 # create and activate virtualenv
 virtualenv ve_pyinstaller
