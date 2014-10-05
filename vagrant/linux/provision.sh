@@ -4,6 +4,8 @@ DSL_SHA=""
 REST_CLIENT_SHA=""
 CLI_SHA=""
 OS_PROVIDER_SHA=""
+COMMON_PLUGIN_SHA=""
+
 
 # update cache and install essentials
 sudo apt-get update
@@ -49,6 +51,14 @@ pushd cloudify-rest-client
 		git reset --hard $REST_CLIENT_SHA
 	fi
 	pip install .
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-plugins-common.git
+pushd cloudify-plugins-common
+        if [ -n "$COMMON_PLUGIN_SHA" ]; then
+                git reset --hard $COMMON_PLUGIN_SHA
+        fi
+        pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli.git
