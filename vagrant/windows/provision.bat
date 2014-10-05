@@ -2,6 +2,7 @@ SET DSL_SHA=""
 SET REST_CLIENT_SHA=""
 SET CLI_SHA=""
 SET OS_PROVIDER_SHA=""
+SET COMMON_PLUGIN_SHA=""
 
 call "C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\vsvars32.bat"
 
@@ -17,6 +18,12 @@ git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
 pushd cloudify-rest-client
 	if not (%REST_CLIENT_SHA%)==() git reset --hard %REST_CLIENT_SHA%
 	pip install .
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-plugins-common.git
+pushd cloudify-plugins-common
+        if not (%COMMON_PLUGIN_SHA%)==() git reset --hard %COMMON_PLUGIN_SHA%
+        pip install .
 popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-cli.git
