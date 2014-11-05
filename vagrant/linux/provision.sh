@@ -5,6 +5,8 @@ REST_CLIENT_SHA=""
 COMMON_PLUGIN_SHA=""
 CLI_SHA=""
 OS_PROVIDER_SHA=""
+OS_PLUGIN_SHA=""
+FABRIC_SHA=""
 
 # update cache and install essentials
 sudo apt-get update
@@ -46,7 +48,7 @@ popd
 
 git clone https://github.com/cloudify-cosmo/cloudify-rest-client.git
 pushd cloudify-rest-client
-	if [ -n "$REST_CLIENT_SHA" ]; then	
+	if [ -n "$REST_CLIENT_SHA" ]; then
 		git reset --hard $REST_CLIENT_SHA
 	fi
 	pip install .
@@ -68,7 +70,8 @@ pushd cloudify-cli
 	pip install .
 popd
 
-git clone https://github.com/cloudify-cosmo/cloudify-openstack-provider.git
+
+git clone https://github.com/cloudify-cosmo/cloudify-openstack-provider
 pushd cloudify-openstack-provider
 	if [ -n "$OS_PROVIDER_SHA" ]; then
 		git reset --hard $OS_PROVIDER_SHA
@@ -77,8 +80,24 @@ pushd cloudify-openstack-provider
 popd
 
 
+git clone https://github.com/cloudify-cosmo/cloudify-openstack-plugin
+pushd cloudify-openstack-plugin
+	if [ -n "$OS_PLUGIN_SHA" ]; then
+		git reset --hard $OS_PLUGIN_SHA
+	fi
+	pip install .
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-fabric-plugin
+pushd cloudify-fabric-plugin
+	if [ -n "$FABRIC_SHA" ]; then
+		git reset --hard $FABRIC_SHA
+	fi
+	pip install .
+popd
+
+
 # run pyinstaller
-# rm -rf cloudify-cli-packager
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
 cd cloudify-cli-packager/pyinstaller
 pyinstaller cfy.spec -y
