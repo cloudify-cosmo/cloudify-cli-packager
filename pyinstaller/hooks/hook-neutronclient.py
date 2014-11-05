@@ -1,1 +1,2 @@
-hiddenimports =['neutronclient.v2_0','neutronclient.v2_0.client']
+from PyInstaller.hooks.hookutils import collect_submodules
+hiddenimports = collect_submodules('neutronclient')
