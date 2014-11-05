@@ -6,7 +6,7 @@ COMMON_PLUGIN_SHA=""
 CLI_SHA=""
 OS_PROVIDER_SHA=""
 OS_PLUGIN_SHA=""
-FABRIC_SHA=""
+FABRIC_PLUGIN_SHA=""
 
 # update cache and install essentials
 sudo apt-get update
