@@ -1,0 +1,22 @@
+{
+    "keystone_username": "",
+    "keystone_password": "",
+    "keystone_tenant_name": "",
+    "keystone_url": "",
+    "region": "",
+    "manager_public_key_name": "cloudify-$instance_name-mgmt-kp",
+    "agent_public_key_name": "cloudify-$instance_name-agent-kp",
+    "image_id": "",
+    "flavor_id": "",
+    "external_network_name": "",
+
+    "use_existing_manager_keypair": false,
+    "use_existing_agent_keypair": false,
+    "manager_server_name": "$instance_name",
+    "manager_server_user": "ubuntu",
+    "manager_server_user_home": "/home/ubuntu",
+    "manager_private_key_path": "/tmp/cloudify-$instance_name-mgmt-kp.pem",
+    "agent_private_key_path": "/tmp/cloudify-$instance_name-agent-kp.pem",
+    "agents_user": "ubuntu",
+    "resources_prefix": ""
+}
