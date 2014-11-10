@@ -258,6 +258,8 @@ def _set_class_vars(cls):
     cls.opst_path = _get_abspath(config.get('openstack', 'path'))
     cls.use_existing = literal_eval(config.get('global', 'use_existing'))
     cls.mgmt_ip = config.get('global', 'management_ip')
+    cls.opst_blueprint_path = _get_abspath(config.get('openstack',
+                                                      'blueprint_path'))
     cls.opst_inputs_path = _get_abspath(config.get('openstack',
                                                    'inputs_path'))
 
@@ -348,14 +350,14 @@ class BootstrapOpenstack(BaseTest):
         _call(['cfy', 'init'], appid=cls.pkg_id)
         copytree(cls.opst_path, os.path.join(cls.tempdir, 'openstack'))
         _copy_cloudify_config(cls.opst_inputs_path,
-                              os.path.join(cls.tempdir,
+                              os.path.join(cls.tempdir, 'openstack',
                                            'inputs.json.template'))
 
         if cls.use_existing:
             _call(['cfy', 'use', cls.mgmt_ip], appid=cls.pkg_id)
         else:
             errcode = _call(['cfy', 'bootstrap', '-v',
-                             '-p', 'openstack/openstack.yml',
+                             '-p', 'openstack/openstack.yaml',
                              '-i', 'openstack/inputs.json.template'],
                             appid=cls.pkg_id)
             if errcode != 0:
