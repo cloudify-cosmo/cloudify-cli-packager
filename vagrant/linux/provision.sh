@@ -7,6 +7,7 @@ CLI_SHA=""
 OS_PROVIDER_SHA=""
 OS_PLUGIN_SHA=""
 FABRIC_PLUGIN_SHA=""
+SCRIPTS_PLUGIN_SHA=""
 
 # update cache and install essentials
 sudo apt-get update
@@ -58,6 +59,14 @@ git clone https://github.com/cloudify-cosmo/cloudify-plugins-common.git
 pushd cloudify-plugins-common
         if [ -n "$COMMON_PLUGIN_SHA" ]; then
                 git reset --hard $COMMON_PLUGIN_SHA
+        fi
+        pip install .
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-script-plugin.git
+pushd cloudify-script-plugin
+        if [ -n "$SCRIPTS_PLUGIN_SHA" ]; then
+                git reset --hard $SCRIPTS_PLUGIN_SHA
         fi
         pip install .
 popd
