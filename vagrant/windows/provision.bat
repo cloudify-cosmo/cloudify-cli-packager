@@ -5,6 +5,7 @@ SET CLI_SHA=""
 SET OS_PROVIDER_SHA=""
 SET OS_PLUGIN_SHA=""
 SET FABRIC_PLUGIN_SHA=""
+SET SCRIPTS_PLUGIN_SHA=""
 
 
 call "C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\vsvars32.bat"
@@ -26,6 +27,12 @@ popd
 git clone https://github.com/cloudify-cosmo/cloudify-plugins-common.git
 pushd cloudify-plugins-common
         if not (%COMMON_PLUGIN_SHA%)==() git reset --hard %COMMON_PLUGIN_SHA%
+        pip install .
+popd
+
+git clone https://github.com/cloudify-cosmo/cloudify-script-plugin.git
+pushd cloudify-script-plugin
+        if not (%SCRIPTS_PLUGIN_SHA%)==() git reset --hard %SCRIPTS_PLUGIN_SHA%
         pip install .
 popd
 
