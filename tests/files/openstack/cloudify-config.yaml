@@ -8,6 +8,17 @@ keystone:
     tenant_name:
     auth_url:
 
+networking:
+    int_network:
+        name: cloudify-admin-network-$instance_name
+    subnet:
+        name: cloudify-admin-network-subnet-$instance_name
+    ext_network:
+        name: Ext-Net
+    router:
+        create_if_missing: true
+        name: cloudify-router-$instance_name
+
 compute:
     region: region-b.geo-1
     management_server:
