@@ -4,10 +4,10 @@ import logging
 import string
 import random
 from ast import literal_eval
-from shutil import copy, rmtree
+from shutil import rmtree, copytree
 from ConfigParser import ConfigParser
 from tempfile import mkdtemp
-from unittest import TestCase, main, skip
+from unittest import TestCase, main
 from platform import system, linux_distribution, machine
 from distutils.spawn import find_executable
 from subprocess import call
@@ -255,11 +255,13 @@ def _set_class_vars(cls):
     logger.level = eval('logging.' + config.get('global', 'logging'))
     cls.exec_name = config.get('global', 'exec')
 
-    cls.opst_conf = _get_abspath(config.get('openstack', 'config_path'))
+    cls.opst_path = _get_abspath(config.get('openstack', 'path'))
     cls.use_existing = literal_eval(config.get('global', 'use_existing'))
     cls.mgmt_ip = config.get('global', 'management_ip')
     cls.opst_blueprint_path = _get_abspath(config.get('openstack',
                                                       'blueprint_path'))
+    cls.opst_inputs_path = _get_abspath(config.get('openstack',
+                                                   'inputs_path'))
 
     if system() == 'Windows':
         cls.path = _get_abspath(config.get('exe', 'path'))
@@ -345,15 +347,19 @@ class BootstrapOpenstack(BaseTest):
         logger.debug('temp dir: {}'.format(cls.tempdir))
         os.chdir(cls.tempdir)
 
-        _call(['cfy', 'init', '-p', 'openstack'], appid=cls.pkg_id)
-        _copy_cloudify_config(cls.opst_conf,
-                              os.path.join(cls.tempdir,
-                                           'cloudify-config.yaml'))
+        _call(['cfy', 'init'], appid=cls.pkg_id)
+        copytree(cls.opst_path, os.path.join(cls.tempdir, 'openstack'))
+        _copy_cloudify_config(cls.opst_inputs_path,
+                              os.path.join(cls.tempdir, 'openstack',
+                                           'inputs.json.template'))
 
         if cls.use_existing:
             _call(['cfy', 'use', cls.mgmt_ip], appid=cls.pkg_id)
         else:
-            errcode = _call(['cfy', 'bootstrap', '-v'], appid=cls.pkg_id)
+            errcode = _call(['cfy', 'bootstrap', '-v',
+                             '-p', 'openstack/openstack.yaml',
+                             '-i', 'openstack/inputs.json.template'],
+                            appid=cls.pkg_id)
             if errcode != 0:
                 os.chdir(cls.origdir)
                 raise Exception('Bootstrap failed, error: {}'.format(errcode))
