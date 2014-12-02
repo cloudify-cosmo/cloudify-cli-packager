@@ -84,6 +84,14 @@ inputs:
     router:
         default: cloudify-router
         type: string
+        
+    cloudify_sg_agents:
+        default: cloudify-sg-agents
+        type: string
+        
+    cloudify_sg_management:
+        default: cloudify-sg-management
+        type: string
 
 
 node_templates:
