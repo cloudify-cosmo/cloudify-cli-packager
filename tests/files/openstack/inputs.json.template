@@ -20,5 +20,7 @@
     "agents_user": "ubuntu",
     "resources_prefix": "",
     "management_network": "cloudify-$instance_name-network",
-    "router": "cloudify-$instance_name-router"
+    "router": "cloudify-$instance_name-router",
+    "cloudify_sg_agents": "cloudify-sg-$instance_name-agents",
+    "cloudify_sg_management": "cloudify-sg-$instance_name-management"
 }
