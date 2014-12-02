@@ -163,7 +163,7 @@ node_templates:
     management_security_group:
         type: cloudify.openstack.nodes.SecurityGroup
         properties:
-            resource_id: { get_property: cloudify_sg_management }
+            resource_id: { get_input: cloudify_sg_management }
             security_group:
                 description: Security group for Cloudify Management VM
             rules:
