@@ -76,6 +76,10 @@ inputs:
     resources_prefix:
         default: ''
         type: string
+        
+    management_network:
+        default: cloudify-management-network
+        type: string
 
 
 node_templates:
@@ -98,7 +102,7 @@ node_templates:
     management_network:
         type: cloudify.openstack.nodes.Network
         properties:
-            resource_id: cloudify-management-network
+            resource_id: { get_input: management_network }
             openstack_config: { get_property: [openstack_configuration, openstack_config] }
 
     management_subnet:
