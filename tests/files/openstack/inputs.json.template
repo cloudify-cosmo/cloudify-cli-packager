@@ -19,4 +19,5 @@
     "agent_private_key_path": "/tmp/cloudify-$instance_name-agent-kp.pem",
     "agents_user": "ubuntu",
     "resources_prefix": ""
+    "management_network": "cloudify-$instance_name-network"
 }
