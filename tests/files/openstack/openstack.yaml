@@ -80,6 +80,10 @@ inputs:
     management_network:
         default: cloudify-management-network
         type: string
+        
+    router:
+        default: cloudify-router
+        type: string
 
 
 node_templates:
@@ -122,7 +126,7 @@ node_templates:
     router:
         type: cloudify.openstack.nodes.Router
         properties:
-            resource_id: cloudify-router
+            resource_id: { get_input: router }
             router:
                 external_gateway_info:
                     network_name: { get_input: external_network_name }
