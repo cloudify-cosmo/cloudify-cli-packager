@@ -5,14 +5,14 @@ call "C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\vsvars32.
 
 pip install pyinstaller
 
-pip install -e git://github.com/cloudify-cosmo/cloudify-dsl-parser.git@%CORE_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-rest-client.git@%CORE_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-plugins-common.git@%CORE_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-script-plugin.git@%PLUGINS_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-cli.git@%CORE_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-openstack-provider.git@%PLUGINS_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-openstack-plugin.git@%PLUGINS_TAG_NAME%
-pip install -e git://github.com/cloudify-cosmo/cloudify-fabric-plugin.git@%PLUGINS_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-dsl-parser.git@%CORE_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-rest-client.git@%CORE_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-plugins-common.git@%CORE_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-script-plugin.git@%PLUGINS_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-cli.git@%CORE_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-openstack-provider.git@%PLUGINS_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-openstack-plugin.git@%PLUGINS_TAG_NAME%
+pip install git+https://github.com/cloudify-cosmo/cloudify-fabric-plugin.git@%PLUGINS_TAG_NAME%
 
 
 
