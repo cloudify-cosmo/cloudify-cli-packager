@@ -23,6 +23,6 @@ del version.txt
 git clone https://github.com/cloudify-cosmo/cloudify-cli-packager.git
 cd cloudify-cli-packager\pyinstaller
   git checkout -b tmp_branch %CORE_TAG_NAME%
-	git log -1
+  git log -1
   pyinstaller cfy.spec -y
   iscc ..\packaging/windows\inno\cfy_setup.iss
