@@ -66,7 +66,7 @@ class TestWindowsBootstrap(TestCase):
             'keystone_password': self.env.keystone_password,
             'keystone_tenant_name': self.env.keystone_tenant_name,
             'keystone_url': self.env.keystone_url,
-            'image_id': self.env.image_id,
+            'image_id': self.env.ubuntu_trusty_image_id,
             'flavor_id': self.env.medium_flavor_id,
             'external_network_name': 'public',
             'manager_public_key_name': '{0}-windows-manager-keypair'.format(
