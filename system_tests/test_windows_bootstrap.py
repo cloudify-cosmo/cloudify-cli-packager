@@ -169,7 +169,7 @@ $client.DownloadFile($url, $file)
             'Downloading and extracting cloudify-manager-blueprints from: {0}'
             .format(manager_blueprints_url))
         self._execute_command(session, wget_cmd)
-        blueprint_path = 'C:\cloudify-cli\cloudify-manager-blueprints-{0}\openstack-docker\openstack-docker.yaml'.format(self.branch)  # NOQA
+        blueprint_path = 'C:\cloudify-cli\cloudify-manager-blueprints-{0}\openstack\openstack-manager-blueprint.yaml'.format(self.branch)  # NOQA
         self._execute_command(
             session, """
 $path = "{0}"
@@ -191,7 +191,7 @@ $inputs | Out-File C:\cloudify-cli\inputs.json""".format(
         self.logger.info('Bootstrapping Cloudify manager...')
         self._execute_command(session, """cd \cloudify-cli
 cfy init -r
-cfy bootstrap -p .\cloudify-manager-blueprints-{0}\openstack-docker\openstack-docker.yaml -i .\inputs.json""".format(  # NOQA
+cfy bootstrap -p .\cloudify-manager-blueprints-{0}\openstack\openstack-manager-blueprint.yaml -i .\inputs.json""".format(  # NOQA
             self.branch))
 
     def publish_hello_world_blueprint(self, session):
