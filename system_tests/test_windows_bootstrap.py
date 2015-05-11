@@ -153,8 +153,7 @@ $client.DownloadFile($url, $file)""".format(self.windows_cli_package_url,
         self._execute_command(session, '.\{0} /SILENT /VERYSILENT /SUPPRESSMSGBOXES /DIR="C:\cloudify-cli"'.format(CLI_PACKAGE_EXE))  # NOQA
         self.logger.info('Verifying CLI installation...')
         self._execute_command(session, """
-cd /cloudify-cli
-./cfy.exe --version""")
+c:\cloudify-cli\Scripts\cfy.exe --version""")
 
     def prepare_manager_blueprint(self, session):
         manager_blueprints_url = 'https://github.com/cloudify-cosmo/cloudify-manager-blueprints/archive/{0}.zip'.format(self.branch)  # NOQA
@@ -190,8 +189,8 @@ $inputs | Out-File C:\cloudify-cli\inputs.json""".format(
     def bootstrap_manager(self, session):
         self.logger.info('Bootstrapping Cloudify manager...')
         self._execute_command(session, """cd \cloudify-cli
-cfy init -r
-cfy bootstrap -p .\cloudify-manager-blueprints-{0}\openstack\openstack-manager-blueprint.yaml -i .\inputs.json""".format(  # NOQA
+c:\cloudify-cli\Scripts\cfy.exe init -r
+c:\cloudify-cli\Scripts\cfy.exe bootstrap --install-plugins -p .\cloudify-manager-blueprints-{0}\openstack\openstack-manager-blueprint.yaml -i .\inputs.json""".format(  # NOQA
             self.branch))
 
     def publish_hello_world_blueprint(self, session):
@@ -201,7 +200,7 @@ cfy bootstrap -p .\cloudify-manager-blueprints-{0}\openstack\openstack-manager-b
             'Publishing hello-world example from: {0} [{1}]'.format(
                 hello_world_url, blueprint_id))
         self._execute_command(session, """cd \cloudify-cli
-cfy blueprints publish-archive -l {0} -n blueprint.yaml -b {1}""".format(
+c:\cloudify-cli\Scripts\cfy.exe blueprints publish-archive -l {0} -n blueprint.yaml -b {1}""".format(
             hello_world_url, blueprint_id))
         return blueprint_id
 
@@ -217,21 +216,21 @@ $inputs | Out-File C:\cloudify-cli\deployment-inputs.json""".format(
             json.dumps(deployment_inputs)))
         self.logger.info('Creating deployment: {0}'.format(deployment_id))
         self._execute_command(session, """cd \cloudify-cli
-cfy deployments create -d {0} -b {1}  -i deployment-inputs.json""".format(
+c:\cloudify-cli\Scripts\cfy.exe deployments create -d {0} -b {1}  -i deployment-inputs.json""".format(
             deployment_id, blueprint_id))
         return deployment_id
 
     def install_deployment(self, deployment_id, session):
         self.logger.info('Installing deployment...')
         self._execute_command(session, """cd \cloudify-cli
-cfy executions start -w install -d {0}""".format(deployment_id))
+c:\cloudify-cli\Scripts\cfy.exe executions start -w install -d {0}""".format(deployment_id))
 
     def uninstall_deployment(self, deployment_id, session):
         self.logger.info('Uninstalling deployment...')
         self._execute_command(session, """cd \cloudify-cli
-cfy executions start -w uninstall -d {0}""".format(deployment_id))
+c:\cloudify-cli\Scripts\cfy.exe executions start -w uninstall -d {0}""".format(deployment_id))
 
     def teardown_manager(self, session):
         self.logger.info('Tearing down Cloudify manager...')
         self._execute_command(session, """cd \cloudify-cli
-cfy teardown -f --ignore-deployments""")
+c:\cloudify-cli\Scripts\cfy.exe teardown -f --ignore-deployments""")
